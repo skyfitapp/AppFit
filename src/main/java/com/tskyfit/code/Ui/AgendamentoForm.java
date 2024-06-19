@@ -76,6 +76,8 @@ public class AgendamentoForm extends javax.swing.JFrame {
         jMenu3 = new javax.swing.JMenu();
         jRadioButtonMenuItem1 = new javax.swing.JRadioButtonMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
+        jMenu6 = new javax.swing.JMenu();
+        jMenuItem9 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem7 = new javax.swing.JMenuItem();
         jMenuItem8 = new javax.swing.JMenuItem();
@@ -430,6 +432,13 @@ public class AgendamentoForm extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu3);
 
+        jMenu6.setText("Sobre");
+
+        jMenuItem9.setText("Autores");
+        jMenu6.add(jMenuItem9);
+
+        jMenuBar1.add(jMenu6);
+
         jMenu4.setText("Sair");
 
         jMenuItem7.setText("Deslogar");
@@ -470,6 +479,11 @@ public class AgendamentoForm extends javax.swing.JFrame {
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
+        this.dispose();
+    
+    // Abrir a janela de AgendamentoForm
+    Dash newFrame = new Dash();
+    newFrame.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
@@ -582,6 +596,7 @@ public class AgendamentoForm extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
+    private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem3;
@@ -590,6 +605,7 @@ public class AgendamentoForm extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
+    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem1;
