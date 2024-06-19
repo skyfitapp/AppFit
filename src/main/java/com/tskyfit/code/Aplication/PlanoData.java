@@ -13,7 +13,7 @@ public class PlanoData {
     private Date dt = new Date();
 
     public PlanoData() {
-        this.calendar.set(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_WEEK_IN_MONTH)); 
+        this.calendar.set(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_WEEK_IN_MONTH));
         calendar.setFirstDayOfWeek(Calendar.SUNDAY);
     }
 
@@ -27,10 +27,10 @@ public class PlanoData {
     }
 
     public String setData_fim() {
-        int dia = Integer.parseInt(data_inicio.substring(0, 2)); 
+        int dia = Integer.parseInt(data_inicio.substring(0, 2));
         int month = Integer.parseInt(data_inicio.substring(3, 5));
         int year = Integer.parseInt(data_inicio.substring(6, 10));
-        
+
         // Ajusta o calendário para a data de início
         calendar.set(year, month - 1, dia);
 
@@ -55,15 +55,9 @@ public class PlanoData {
         return data_fim;
     }
 
-
-    /**
-     * Retorna o dia da semana
-     * @param dia_da_semana
-     * @return
-     */
     public String getDiaSemana(boolean dia_da_semana) {
         int dia = this.calendar.get(Calendar.DAY_OF_WEEK)-1;
-        
+
         if (dia_da_semana) {
             if (dia == Calendar.SUNDAY)
                 return "Domingo";
@@ -82,8 +76,8 @@ public class PlanoData {
         } else {
             return String.valueOf(this.calendar.get(Calendar.DAY_OF_MONTH));
         }
-        
-        return ""; 
+
+        return "";
     }
 
     public String getDiaMes(){
@@ -109,24 +103,20 @@ public class PlanoData {
         }
     }
     
-    public String getStatus() {
-        return status;
-    }
-
-    public void verificarEAtualizarStatus() {
+    public String verificarEAtualizarStatus() {
         // Verifica se a data de início é igual à data de término + 1 dia
         Calendar calInicio = Calendar.getInstance();
         calInicio.set(Integer.parseInt(getAno()), Integer.parseInt(getMes()) - 1, Integer.parseInt(getDiaMes()));
-    
+
         Calendar calFim = Calendar.getInstance();
-        calFim.set(Integer.parseInt(data_fim.substring(6, 10)), Integer.parseInt(data_fim.substring(3, 5)) - 1, Integer.parseInt(data_fim.substring(0, 2)));
+        calFim.set(Integer.parseInt(getData_fim().substring(6, 10)), Integer.parseInt(getData_fim().substring(3, 5)) - 1, Integer.parseInt(getData_fim().substring(0, 2)));
         calFim.add(Calendar.DAY_OF_MONTH, 1);
-    
+
         if (calInicio.equals(calFim)) {
-            this.status = "Inativo";
+            return "Inativo";
         } else {
-            this.status = "Ativo";
+            return "Ativo";
         }
     }
-
+    
 }

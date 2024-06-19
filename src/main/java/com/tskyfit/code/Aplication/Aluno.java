@@ -1,17 +1,19 @@
 package com.tskyfit.code.Aplication;
 
-public class Aluno {
+import java.util.Calendar;
+
+public class Aluno extends PlanoData {
     private String nome;
     private String cpf;
     private String datanascimento;
     private String email;
     private String telefone;
-    
+
     // * Sobre o plano:
     private String plano;
-    private String datainicio;
-    private String datafim;
-    private String status;
+    private String datainicio = getData_inicio(); // Corrigido aqui
+    private String datafim = getData_fim();
+    private String status = verificarEAtualizarStatus();
 
     public Aluno(String nome, String cpf, String datanascimento, String email, String telefone, String plano) {
         this.nome = nomeFormatter(nome);
@@ -20,14 +22,43 @@ public class Aluno {
         this.email = emailFormmatter(email);
         this.telefone = telefoneFormatter(telefone);
         this.plano = plano;
+        this.status = verificarEAtualizarStatus();
     }
 
-    public void setTelefone(String telefone) {
-        this.telefone = telefoneFormatter(telefone);
+    public String getNome() {
+        return this.nome;
+    }
+
+    public String getCpf() {
+        return this.cpf;
+    }
+
+    public String getDataNascimento() {
+        return this.datanascimento;
+    }
+
+    public String getEmail() {
+        return this.email;
     }
 
     public String getTelefone() {
-        return telefone;
+        return this.telefone;
+    }
+
+    public String getPlano() {
+        return this.plano;
+    }
+
+    public String getDataInicio() {
+        return this.datainicio;
+    }
+
+    public String getDataFim() {
+        return this.datafim;
+    }
+
+    public String getStatusDoPlano() {
+        return this.status;
     }
 
     public String telefoneFormatter(String telefone) {
@@ -44,9 +75,6 @@ public class Aluno {
         this.email = emailFormmatter(email);
     }
 
-    public String getEmail() {
-        return email;
-    }
 
     public String emailFormmatter(String email) {
         if (email.length() > 0) {
@@ -62,10 +90,6 @@ public class Aluno {
 
     public void setNome(String nome) {
         this.nome = nomeFormatter(nome);
-    }
-
-    public String getNome() {
-        return this.nome;
     }
 
     public String nomeFormatter(String nome) {
@@ -85,13 +109,10 @@ public class Aluno {
         this.cpf = cpfFormatter(cpf);
     }
 
-    public String getCpf() {
-        return this.cpf;
-    }
 
     public String cpfFormatter(String cpf) {
         cpf = cpf.replaceAll("\\D", "");
-    
+
         if (cpf.length() == 11) {
             cpf = cpf.substring(0, 3) + "." + cpf.substring(3, 6) + "." + cpf.substring(6, 9) + "-" + cpf.substring(9, 11);
         } else {
@@ -122,10 +143,9 @@ public class Aluno {
         this.plano = plano;
     }
 
-    public String getPlano() {
-        return plano;
+
+    public String getStatus() {
+        return status;
     }
-
-
 
 }

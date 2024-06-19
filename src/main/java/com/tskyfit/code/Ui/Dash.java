@@ -3,6 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package com.tskyfit.code.Ui;
+import com.tskyfit.code.Aplication.Aluno;
+import com.tskyfit.code.DAO.AlunoDAO;
 import java.awt.Color;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -148,6 +150,11 @@ public class Dash extends javax.swing.JFrame {
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Plano Prime Mensal - R$ 139,90", "Plano Prime Recorrente - R$ 119,90", "Plano Prime Anual - R$ 99,90 x 12" }));
 
         jButton1.setText("Cadastrar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -592,9 +599,9 @@ public class Dash extends javax.swing.JFrame {
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        AgendamentoForm newFrame = new AgendamentoForm();
+        AgendamentoForm agendamentoForm = new AgendamentoForm();
         
-        newFrame.setVisible(true);
+        agendamentoForm.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
@@ -656,6 +663,49 @@ public class Dash extends javax.swing.JFrame {
         // TODO add your handling code here:
         // Criar Verificação dos JTextField:
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        
+        String nome = jTextField1.getText();
+        String cpf = jTextField2.getText();
+        String dataNascimento = jTextField3.getText();
+        String email = jTextField4.getText();
+        String telefone = jTextField5.getText();
+        String plano = jComboBox1.getSelectedItem().toString();
+
+        String message = "Nome: " + nome + "\nCPF: " + cpf + "\nData de Nascimento: " + dataNascimento + "\nEmail: " + email + "\nTelefone: " + telefone + "\nPlano: " + plano;
+
+        if(nome == null || nome.isEmpty() ||
+                cpf == null || cpf.isEmpty() ||
+                dataNascimento == null || dataNascimento.isEmpty() ||
+                email == null || email.isEmpty() ||
+                telefone == null || telefone.isEmpty() ||
+                plano == null || plano.isEmpty()) {
+            emitirSomDeErro(true);
+            JOptionPane.showMessageDialog(null, "Dados insuficientes ou não existentes!", "Está tentando fazer um cadastro?", JOptionPane.ERROR_MESSAGE);
+        } else {
+            int response = JOptionPane.showConfirmDialog(null, message + "\n\nDeseja realmente salvar os dados?", "Confirmar Salvamento", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+            if (response == JOptionPane.YES_OPTION) {
+                // Lógica para salvar os dados
+                try {
+                    Aluno aluno = new Aluno(nome, cpf, dataNascimento, email, telefone, plano); // Cria um novo aluno
+                    AlunoDAO alunoDAO = new AlunoDAO(aluno); // Cria um novo DAO para salvar o aluno!
+                    alunoDAO.create(aluno);
+                    
+                } catch (Exception e) {
+                    // Handle exception
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Salvamento cancelado.", "Cancelado", JOptionPane.INFORMATION_MESSAGE);
+            }
+        }
+
+
+
+        
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void mudarCorTemporariamente(JTextField textField, Color cor, int duracao) {
         Color corOriginal = textField.getBackground();
