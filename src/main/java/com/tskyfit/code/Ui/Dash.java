@@ -4,8 +4,10 @@
  */
 package com.tskyfit.code.Ui;
 import java.awt.Color;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.Timer;
@@ -81,12 +83,13 @@ public class Dash extends javax.swing.JFrame {
         jButton5 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
-        jMenuItem3 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -224,21 +227,26 @@ public class Dash extends javax.swing.JFrame {
         });
 
         jButton2.setText("Buscar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jTable1.getTableHeader().setReorderingAllowed(false);
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Matricula", "Nome Completo", "CPF", "Data de Nascimento", "Email", "Telefone", "Plano", "Status do Plano"
+                "Matricula", "Nome Completo", "CPF", "Data de Nascimento", "Email", "Telefone", "Plano", "Status do Plano", "Expira em"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                true, true, true, true, true, true, true, false
+                true, true, true, true, true, true, true, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -472,20 +480,18 @@ public class Dash extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jMenu1.setText("Aluno");
-        jMenuBar1.add(jMenu1);
-
-        jMenu2.setText("Editar");
-
-        jMenuItem3.setText("Aluno");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
+        jMenu1.setText("Novo Aluno");
+        jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu1MouseClicked(evt);
             }
         });
-        jMenu2.add(jMenuItem3);
-
-        jMenuBar1.add(jMenu2);
+        jMenu1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu1ActionPerformed(evt);
+            }
+        });
+        jMenuBar1.add(jMenu1);
 
         jMenu3.setText("Agendamentos");
 
@@ -510,6 +516,26 @@ public class Dash extends javax.swing.JFrame {
         jMenu4.add(jMenuItem2);
 
         jMenuBar1.add(jMenu4);
+
+        jMenu2.setText("Ajuda");
+
+        jMenuItem4.setText("Como cadastrar um novo aluno?");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem4);
+
+        jMenuItem3.setText("Como editar os dados cadastrais de um aluno?");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem3);
+
+        jMenuBar1.add(jMenu2);
 
         jMenu5.setText("Sair");
         jMenuBar1.add(jMenu5);
@@ -583,14 +609,53 @@ public class Dash extends javax.swing.JFrame {
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         // TODO add your handling code here:
         Color lightGray = new Color(211, 211, 211);
-        mudarCorTemporariamente(jTextField6, lightGray, 450);
-        mudarCorTemporariamente(jTextField7, lightGray, 450);
+        JOptionPane.showMessageDialog(null, "No painel de BUSCAR, digite o nome ou cpf do aluno para fazer as devidas alterações!", "Como Editar os dados de um aluno?", JOptionPane.INFORMATION_MESSAGE);
+        mudarCorTemporariamente(jTextField6, lightGray, 1000);
+        mudarCorTemporariamente(jTextField7, lightGray, 1000);
+        mudarCorTempButton(jButton2, Color.DARK_GRAY, 1000);
+        
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
+    
+    private static void emitirSomDeErro(boolean b) {
+        Toolkit.getDefaultToolkit().beep();
+    }
+    
+    
     private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
         // TODO add your handling code here:
-
+       
     }//GEN-LAST:event_jTextField7ActionPerformed
+
+    private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(null, "No painel de BUSCAR, digite o nome ou cpf do aluno para fazer as devidas alterações!", "Como Editar os dados de um aluno?", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_jMenu1ActionPerformed
+
+    private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jMenu1MouseClicked
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        // TODO add your handling code here:
+        Color lightGray = new Color(211, 211, 211);
+        String mensagem = "<html>No painel <b>CADASTRAR ALUNO</b>, digite as informações e clique em <b>cadastrar</b>!</html>";
+        String titulo = "Como cadastrar um novo aluno?";
+        JOptionPane.showMessageDialog(null, mensagem, titulo, JOptionPane.INFORMATION_MESSAGE);
+
+        mudarCorTemporariamente(jTextField1, lightGray, 1000);
+        mudarCorTemporariamente(jTextField2, lightGray, 1000);
+        mudarCorTemporariamente(jTextField3, lightGray, 1000);
+        mudarCorTemporariamente(jTextField4, lightGray, 1000);
+        mudarCorTemporariamente(jTextField5, lightGray, 1000);
+        mudarCorTempButton(jButton1, Color.DARK_GRAY, 1000);
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        // Criar Verificação dos JTextField:
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     private void mudarCorTemporariamente(JTextField textField, Color cor, int duracao) {
         Color corOriginal = textField.getBackground();
@@ -607,6 +672,20 @@ public class Dash extends javax.swing.JFrame {
         timer.start();
     }
     
+    private static void mudarCorTempButton(JButton button, Color cor, int duracao) {
+        Color corOriginal = button.getBackground();
+        button.setBackground(cor);
+
+        // Timer para restaurar a cor original após a duração especificada
+        Timer timer = new Timer(duracao, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                button.setBackground(corOriginal);
+            }
+        });
+        timer.setRepeats(false); // Executa apenas uma vez
+        timer.start();
+    }
     
     /**
      * @param args the command line arguments
@@ -685,6 +764,7 @@ public class Dash extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
